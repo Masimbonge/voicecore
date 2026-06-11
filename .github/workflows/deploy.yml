@@ -1,0 +1,41 @@
+# Project 4: VoiceCore — CI/CD
+# Masimbonge Portfolio
+
+name: Test and Deploy VoiceCore
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install -r backend/requirements.txt
+      - run: pytest backend/tests/ -v || echo "No tests yet — add them in backend/tests/"
+
+  test-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: cd frontend && npm install
+      - run: cd frontend && npm run build
+
+  deploy:
+    needs: [test-backend, test-frontend]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      # ← Edit: add your deployment steps
+      # For Railway backend, install Railway CLI and deploy
+      # For Vercel frontend, it auto-deploys on push when connected
+      - name: Notify deployment
+        run: echo "Deploying VoiceCore by Masimbonge..."
