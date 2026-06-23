@@ -1,6 +1,6 @@
 # 🎤 VoiceCore — Multilingual Voice Assistant
 
-> **Masimbonge Portfolio — Project 04**
+> **Masimbonge Portfolio —
 > Voice AI · Multilingual · Real-time
 
 Speak into your browser, get an intelligent spoken response back. Auto-detects your language, processes with Claude AI, synthesises voice with ElevenLabs. Supports 10 languages with live waveform visualisation.
